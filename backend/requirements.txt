@@ -9,6 +9,7 @@ SQLAlchemy==2.0.52
 greenlet==3.5.5
 
 requests==2.34.2
+python-dotenv>=1.0,<2
 feedparser==6.0.14
 newspaper4k==0.9.6
 beautifulsoup4==4.15.0
