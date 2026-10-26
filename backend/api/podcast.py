@@ -12,8 +12,8 @@ from flask import (
 )
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from ai.bart_model import BartSummarizer
 from ai.preprocessing import combine_articles
+from ai.summarizer_singleton import summarizer
 from database.database import db
 from database.models import NewsArticle, Podcast, UserSettings
 from podcast.script_generator import generate_podcast_script
@@ -24,8 +24,6 @@ podcast_bp = Blueprint(
     __name__,
     url_prefix="/api/podcast"
 )
-
-summarizer = BartSummarizer()
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 

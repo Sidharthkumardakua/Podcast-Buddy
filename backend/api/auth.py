@@ -35,7 +35,9 @@ def register():
 
     if not username or not email or not password:
         return jsonify({
-            "error": "Username, email and password are required"
+            "error": "Invalid registration",
+            "message": "Username, email and password are required.",
+            "code": "INVALID_REGISTRATION"
         }), 400
 
     if len(password) < 6:
@@ -78,7 +80,9 @@ def login():
 
     if not data:
         return jsonify({
-            "error": "Request body is required"
+            "error": "Invalid request",
+            "message": "Request body is required.",
+            "code": "INVALID_JSON"
         }), 400
 
     email = data.get("email", "").strip().lower()
@@ -86,7 +90,9 @@ def login():
 
     if not email or not password:
         return jsonify({
-            "error": "Email and password are required"
+            "error": "Invalid login",
+            "message": "Email and password are required.",
+            "code": "INVALID_LOGIN"
         }), 400
 
     user = User.query.filter_by(email=email).first()
@@ -95,8 +101,10 @@ def login():
         user.password_hash,
         password
     ):
-        return jsonify({
-            "error": "Invalid email or password"
+       return jsonify({
+            "error": "Invalid credentials",
+            "message": "Invalid email or password.",
+            "code": "INVALID_CREDENTIALS"
         }), 401
 
     access_token = create_access_token(
@@ -118,7 +126,7 @@ def login():
 def profile():
     user_id = get_jwt_identity()
 
-    user = User.query.get(int(user_id))
+    user = db.session.get(User, int(user_id))
 
     if not user:
         return jsonify({

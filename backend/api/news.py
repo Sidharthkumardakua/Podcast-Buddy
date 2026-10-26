@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import jwt_required
 
 from ai.preprocessing import prepare_articles
 from database.database import db
@@ -43,6 +44,7 @@ CATEGORY_QUERIES = {
 
 
 @news_bp.route("/fetch", methods=["GET"])
+@jwt_required()
 def get_news():
     """Fetch, clean, extract and store news articles."""
 
@@ -138,15 +140,30 @@ def get_news():
 
 @news_bp.route("/latest", methods=["GET"])
 def latest_news():
-    """Return the latest prepared news content."""
+    """Return latest news filtered by category and/or search term."""
 
     category = request.args.get("category")
+    search = request.args.get("search", "").strip()
 
     query = NewsArticle.query
 
+    # Category filter
     if category:
-        query = query.filter_by(
-            category=category
+        query = query.filter(
+            NewsArticle.category == category
+        )
+
+    # Normal search filter
+    if search:
+        search_pattern = f"%{search}%"
+
+        query = query.filter(
+            db.or_(
+                NewsArticle.title.ilike(search_pattern),
+                NewsArticle.content.ilike(search_pattern),
+                NewsArticle.source.ilike(search_pattern),
+                NewsArticle.category.ilike(search_pattern),
+            )
         )
 
     articles = query.order_by(
@@ -156,14 +173,29 @@ def latest_news():
     article_data = [
         {
             "title": article.title,
-            "content": article.content
+            "content": article.content,
+            "source": article.source,
+            "category": article.category,
+            "published_at": article.published_at,
+            "thumbnail": article.thumbnail,
         }
         for article in articles
     ]
 
-    prepared_articles = prepare_articles(
-        article_data
-    )
+    prepared_articles = []
+
+    for article in article_data:
+        prepared = prepare_articles([article])
+
+        if prepared:
+            prepared_article = prepared[0]
+            prepared_article.update({
+                "source": article["source"],
+                "category": article["category"],
+                "published_at": article["published_at"],
+                "thumbnail": article["thumbnail"],
+            })
+            prepared_articles.append(prepared_article)
 
     return jsonify({
         "count": len(prepared_articles),

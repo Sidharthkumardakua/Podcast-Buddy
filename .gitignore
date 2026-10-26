@@ -18,6 +18,16 @@ env/
 tts_env/
 
 # =========================
+# Frontend dependencies / builds
+# =========================
+node_modules/
+dist/
+dist-ssr/
+coverage/
+*.tsbuildinfo
+*.local
+
+# =========================
 # Environment / secrets
 # =========================
 .env
@@ -54,6 +64,12 @@ backend/storage/audio/*
 # =========================
 *.log
 logs/
+
+# =========================
+# Runtime caches
+# =========================
+.cache/
+.eslintcache
 
 # =========================
 # Large trained model artifacts

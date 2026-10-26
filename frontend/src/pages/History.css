@@ -1,0 +1,388 @@
+.history-page {
+  width: 100%;
+}
+
+.history-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.history-header h1 {
+  margin: 8px 0;
+  font-size: 42px;
+}
+
+.history-subtitle {
+  margin: 0;
+  color: #a8a5b5;
+  font-size: 16px;
+}
+
+.history-refresh-button {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 20px;
+  background: #8d50f5;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.history-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.history-toolbar {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #292733;
+  border-radius: 18px;
+  background: #111116;
+}
+
+.history-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.history-search span {
+  color: #9b62ff;
+  font-size: 22px;
+}
+
+.history-search input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #302d3c;
+  border-radius: 10px;
+  padding: 13px 15px;
+  background: #191820;
+  color: white;
+  outline: none;
+}
+
+.history-search input:focus {
+  border-color: #8d50f5;
+}
+
+.history-search button {
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 20px;
+  background: #8d50f5;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.history-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.history-category {
+  border: 1px solid #302d3c;
+  border-radius: 999px;
+  padding: 9px 15px;
+  background: transparent;
+  color: #aaa7b7;
+  cursor: pointer;
+}
+
+.history-category.active {
+  border-color: #8d50f5;
+  background: #2d1b55;
+  color: white;
+}
+
+.history-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 24px;
+  align-items: start;
+}
+
+.history-list-header {
+  margin-bottom: 18px;
+}
+
+.history-list-header h2 {
+  margin: 5px 0 0;
+  font-size: 25px;
+}
+
+.history-card {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 15px;
+  padding: 20px;
+  border: 1px solid #292733;
+  border-radius: 18px;
+  background: #111116;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.history-card:hover,
+.history-card.selected {
+  border-color: #6f3dcc;
+}
+
+.history-card:hover {
+  transform: translateY(-1px);
+}
+
+.history-card-icon {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #7f45ed;
+  color: white;
+  font-size: 25px;
+}
+
+.history-card-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.history-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #9b62ff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.history-card-top span:last-child {
+  color: #777382;
+}
+
+.history-card h3 {
+  margin: 8px 0;
+  font-size: 21px;
+}
+
+.history-card p {
+  margin: 0;
+  color: #9e9ba9;
+  line-height: 1.6;
+}
+
+.history-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 17px;
+  color: #888492;
+  font-size: 14px;
+}
+
+.history-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.history-actions button {
+  border: 1px solid #383442;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #191720;
+  color: #ddd9e5;
+  cursor: pointer;
+}
+
+.history-actions button:hover {
+  border-color: #8d50f5;
+}
+
+.history-actions .delete-action {
+  color: #ff929b;
+}
+
+.history-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.history-player {
+  position: sticky;
+  top: 24px;
+  min-height: 250px;
+  padding: 24px;
+  border: 1px solid #30263e;
+  border-radius: 20px;
+  background: linear-gradient(
+    145deg,
+    #18121f,
+    #100f15
+  );
+}
+
+.history-player h2 {
+  margin: 8px 0;
+  font-size: 25px;
+}
+
+.history-player-meta {
+  color: #9994a5;
+}
+
+.history-audio {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.history-player-loading {
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  color: #aaa6b4;
+}
+
+.history-player-empty {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.history-player-empty > div {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 15px;
+  border-radius: 16px;
+  background: #2b1a4d;
+  color: #a36aff;
+  font-size: 28px;
+}
+
+.history-player-empty h3 {
+  margin: 0 0 8px;
+}
+
+.history-player-empty p {
+  margin: 0;
+  color: #8f8b99;
+  line-height: 1.5;
+}
+
+.history-player-error {
+  margin-top: 20px;
+  color: #ff929b;
+}
+
+.history-empty,
+.history-state,
+.history-error {
+  padding: 70px 30px;
+  border: 1px solid #292733;
+  border-radius: 20px;
+  background: #111116;
+  text-align: center;
+}
+
+.history-empty-icon {
+  margin-bottom: 15px;
+  color: #9558ff;
+  font-size: 42px;
+}
+
+.history-empty h2 {
+  margin-bottom: 8px;
+}
+
+.history-empty p,
+.history-state p {
+  color: #9995a4;
+}
+
+.history-error {
+  border-color: #59313a;
+}
+
+.history-error h3 {
+  color: #ff858f;
+}
+
+.history-error p {
+  color: #aaa5b2;
+}
+
+.history-error button {
+  border: 0;
+  border-radius: 9px;
+  padding: 10px 16px;
+  background: #8d50f5;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 12px;
+  border: 3px solid #30283d;
+  border-top-color: #9558ff;
+  border-radius: 50%;
+  animation: history-spin 0.8s linear infinite;
+}
+
+@keyframes history-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .history-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .history-player {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .history-header {
+    flex-direction: column;
+  }
+
+  .history-search {
+    flex-wrap: wrap;
+  }
+
+  .history-search input {
+    width: 100%;
+  }
+
+  .history-card {
+    flex-direction: column;
+  }
+
+  .history-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
