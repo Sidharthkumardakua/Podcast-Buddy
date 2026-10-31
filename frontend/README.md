@@ -1,21 +1,19 @@
 # Podcast Buddy AI frontend
 
-The frontend is a React and TypeScript application built with Vite. For backend and full-project setup, see the [repository README](../README.md).
+The Podcast Buddy AI frontend is a web interface for browsing news and turning articles into summaries and podcasts. It also provides account access, podcast history, playback controls, and user settings.
 
-## Run locally
+## Features
 
-From this directory:
+- Browse and refresh news, with category filtering and search.
+- Generate article summaries and podcast scripts through the backend API.
+- View podcast history and play generated audio.
+- Register, sign in, and manage user preferences.
 
-```powershell
-npm ci
-npm run dev
-```
+## Technology
 
-Open `http://localhost:5173`. The app expects the Flask API at `http://localhost:5000/api`; start the backend as described in the repository README.
+- React and TypeScript for the user interface.
+- Vite for frontend development and builds.
+- React Router for page navigation.
+- Axios for communication with the Flask API.
 
-## Checks
-
-```powershell
-npm run build
-npm run lint
-```
+The frontend communicates with the backend API at `http://localhost:5000/api`.
