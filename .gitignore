@@ -47,15 +47,8 @@ coverage/
 Thumbs.db
 
 # =========================
-# Generated audio
-# =========================
-backend/storage/audio/*
-!backend/storage/audio/.gitkeep
-
-# =========================
 # Database files
 # =========================
-backend/instance/
 *.db
 
 # =========================
@@ -69,11 +62,6 @@ logs/
 # =========================
 .cache/
 .eslintcache
-
-# =========================
-# Large trained model artifacts
-# =========================
-backend/models/
 
 # =========================
 # Temporary files

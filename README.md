@@ -1,93 +1,32 @@
 # Podcast Buddy AI
 
-Podcast Buddy AI is a local news-to-podcast application. Its Flask API fetches news, generates article summaries with a local BART model, creates podcast scripts, and can generate WAV audio with a separate Coqui TTS environment. The React and TypeScript frontend provides the user interface.
+Podcast Buddy AI turns news articles into podcast-ready summaries, scripts, and audio. Users can browse news, generate summaries and podcasts, and manage their accounts and preferences through a web interface.
 
-## Project layout
+## What it does
 
-- `backend/`: Flask API, database, news fetching, summarization, and podcast generation
-- `frontend/`: React, TypeScript, and Vite application
-- `backend/models/`: local BART model files (not included in Git)
-- `backend/storage/audio/`: generated audio (not included in Git)
+- Fetches news articles and extracts and cleans article text.
+- Summarizes articles with a locally stored BART model.
+- Creates podcast scripts from selected news and summaries.
+- Generates podcast audio using Coqui TTS in a separate environment.
+- Provides account authentication, podcast history, and user settings.
+- Fetches news on a schedule.
 
-## Requirements
+## Technology
 
-- Python 3.11 recommended
-- Node.js and npm
-- A local BART model directory to start the backend
-- A SerpAPI key to fetch news
-- A separately installed Coqui TTS environment to generate podcast audio
+- **Frontend:** React, TypeScript, Vite, Axios, and React Router.
+- **Backend:** Python and Flask, with Flask-SQLAlchemy and SQLAlchemy.
+- **Database:** PostgreSQL, accessed through Psycopg.
+- **Authentication and scheduling:** Flask-JWT-Extended and APScheduler.
+- **News processing:** SerpAPI, Requests, Feedparser, Newspaper4k, Trafilatura, Beautiful Soup, and related extraction and parsing libraries.
+- **Summarization:** PyTorch and Hugging Face Transformers using a local BART model.
+- **Podcast audio:** Coqui TTS, run separately from the main backend environment.
 
-Model files, TTS packages, and TTS assets are not included in this repository.
+## Project structure
 
-## Backend setup (Windows PowerShell)
-
-From the repository root:
-
-```powershell
-cd backend
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-Copy-Item .env.example .env
-```
-
-Edit `backend/.env` (the current directory is `backend`) and set your secrets and SerpAPI key:
-
-```env
-SECRET_KEY=replace-with-a-long-random-value
-JWT_SECRET_KEY=replace-with-another-long-random-value
-DATABASE_URL=postgresql+psycopg://USER:PASSWORD@localhost:5432/podcast_buddy
-SERPAPI_KEY=your-serpapi-key
-BART_MODEL_PATH=models/news_bart
-```
-
-Generate unique secret values for local development. Never commit `.env` or real credentials.
-
-PostgreSQL is required; the backend does not fall back to SQLite. Install and start PostgreSQL, create a database named `podcast_buddy`, and set `DATABASE_URL` to match your PostgreSQL credentials. The app creates missing tables at startup. Existing SQLite database files are not used by the app.
-
-The BART model directory must exist before starting the API because the summarizer loads during application startup. `BART_MODEL_PATH` is relative to `backend/` unless you provide an absolute path. The default in `.env.example` is `models/news_bart`; set it to the directory containing your model files. Model files are excluded from Git, so obtain or train a compatible model separately.
-
-Start the API from the `backend` directory:
-
-```powershell
-python app.py
-```
-
-The API listens at `http://localhost:5000`. On startup, it attempts to fetch news and then schedules hourly fetches. Without a valid `SERPAPI_KEY`, those fetch attempts fail and news fetching will not work, but the key is not needed just to start the server.
-
-## Frontend setup
-
-Open a second terminal at the repository root:
-
-```powershell
-cd frontend
-npm ci
-npm run dev
-```
-
-Open `http://localhost:5173`. The frontend currently sends API requests to `http://localhost:5000/api`.
-
-Available frontend checks:
-
-```powershell
-npm run build
-npm run lint
-```
-
-## Podcast audio (optional)
-
-Audio generation calls `backend/podcast/tts_worker.py` using this Windows interpreter path:
-
-```text
-backend/tts_env/Scripts/python.exe
-```
-
-Create and install a compatible Coqui TTS environment at that path separately; it is intentionally not part of `backend/requirements.txt`. Podcast audio is written under `backend/storage/audio/`.
-
-## Notes
-
-- PostgreSQL is the runtime database; local database files are ignored by Git.
-- The SQLite migration utility has been removed; back up any SQLite data you still need before deleting local database files.
-- The backend allows the local frontend origin `http://localhost:5173` via CORS.
-- Do not commit local virtual environments, `.env` files, model files, generated audio, local database files, or build/dependency directories.
-- For deployment, configure secure secrets, allowed frontend origins, API URLs, model storage, and TTS separately.
+- `backend/` — Flask API, database models, news processing, summarization, and podcast generation.
+- `backend/ai/` — BART model and text preprocessing components used by the backend.
+- `backend/api/` — API endpoints for authentication, news, summaries, podcasts, and settings.
+- `backend/database/` — SQLAlchemy database setup and models.
+- `backend/news/` — News retrieval, article extraction, cleaning, and deduplication.
+- `backend/podcast/` — Podcast script generation and the separate TTS worker.
+- `frontend/` — React and TypeScript user interface.

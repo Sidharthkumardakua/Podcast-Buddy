@@ -1,19 +1,5 @@
-# Environment variables and secrets
-.env
-.env.*
-!.env.example
-
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-
-# Database files and backups
-*.db
-
-# Generated files
+# Backend-local runtime data and generated assets
 instance/
 models/
-storage/audio/
-tts_env/
+storage/audio/*
+!storage/audio/.gitkeep
