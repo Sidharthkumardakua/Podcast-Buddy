@@ -1,4 +1,5 @@
 import { usePlayer } from "../context/usePlayer";
+import PodcastArtwork from "./PodcastArtwork";
 import "./MiniPlayer.css";
 
 function formatTime(seconds: number) {
@@ -29,9 +30,12 @@ function MiniPlayer() {
   return (
     <div className="mini-player">
       <div className="mini-player-track">
-        <div className="mini-player-icon">
+        <PodcastArtwork
+          className="mini-player-icon"
+          category={currentTrack.category}
+        >
           <span>{categoryTag(currentTrack.category)}</span>
-        </div>
+        </PodcastArtwork>
         <div>
           <strong>{currentTrack.title}</strong>
           <span>{currentTrack.category || "Podcast Buddy AI"}</span>

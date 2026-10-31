@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import api from "../services/api";
+import PodcastArtwork from "../components/PodcastArtwork";
 
 import "./Podcast.css";
 
@@ -324,9 +325,14 @@ const downloadPodcast = async () => {
           </div>
 
           <div className="podcast-player">
-            <div className="player-icon">
-              ♫
-            </div>
+            <PodcastArtwork
+              className="player-icon"
+              category={podcast.category}
+            >
+              <span>
+                {podcast.category.slice(0, 3).toUpperCase()}
+              </span>
+            </PodcastArtwork>
 
             <div className="player-info">
               <strong>Podcast Buddy AI</strong>

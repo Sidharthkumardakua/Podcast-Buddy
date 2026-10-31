@@ -1,4 +1,5 @@
 import { usePlayer } from "../context/usePlayer";
+import PodcastArtwork from "./PodcastArtwork";
 import "./NowPlayingPanel.css";
 
 function formatDuration(seconds: number) {
@@ -38,9 +39,12 @@ function NowPlayingPanel() {
 
       {currentTrack ? (
         <div className="now-playing-card">
-          <div className="now-playing-art">
+          <PodcastArtwork
+            className="now-playing-art"
+            category={currentTrack.category}
+          >
             <span>{categoryTag(currentTrack.category)}</span>
-          </div>
+          </PodcastArtwork>
           <strong>{currentTrack.title}</strong>
           <span>Podcast Buddy AI</span>
 
@@ -92,7 +96,12 @@ function NowPlayingPanel() {
               className="up-next-item"
               onClick={() => void playTrack(track, queue)}
             >
-              <div className="up-next-icon">{categoryTag(track.category)}</div>
+              <PodcastArtwork
+                className="up-next-icon"
+                category={track.category}
+              >
+                {categoryTag(track.category)}
+              </PodcastArtwork>
               <div>
                 <strong>{track.title}</strong>
                 <span>{formatDuration(track.duration)}</span>

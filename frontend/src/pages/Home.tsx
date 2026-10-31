@@ -4,6 +4,7 @@ import api from "../services/api";
 import { usePlayer } from "../context/usePlayer";
 import type { Track } from "../context/PlayerContext";
 import NowPlayingPanel from "../components/NowPlayingPanel";
+import PodcastArtwork from "../components/PodcastArtwork";
 import "./Home.css";
 
 type NewsArticle = {
@@ -273,11 +274,14 @@ function Home() {
                   className="featured-card"
                   onClick={() => void playTrack(podcast, podcasts)}
                 >
-                  <div className="featured-art featured-art-purple">
+                  <PodcastArtwork
+                    className="featured-art featured-art-purple"
+                    category={podcast.category}
+                  >
                     <span>
                       {categoryLabels[podcast.category] ?? podcast.category}
                     </span>
-                  </div>
+                  </PodcastArtwork>
                   <div className="featured-info">
                     <span>{podcast.category}</span>
                     <h3>{podcast.title}</h3>

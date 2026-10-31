@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import PodcastArtwork from "../components/PodcastArtwork";
 import "./History.css";
 
 const categories = [
@@ -330,9 +331,12 @@ function History() {
                 }
                 key={podcast.id}
               >
-                <div className="history-card-icon">
-                  ♫
-                </div>
+                <PodcastArtwork
+                  className="history-card-icon"
+                  category={podcast.category}
+                >
+                  <span>{podcast.category.slice(0, 3).toUpperCase()}</span>
+                </PodcastArtwork>
 
                 <div className="history-card-content">
                   <div className="history-card-top">
@@ -415,6 +419,10 @@ function History() {
                   NOW SELECTED
                 </p>
 
+                <PodcastArtwork
+                  className="history-selected-art"
+                  category={selectedPodcast.category}
+                />
                 <h2>{selectedPodcast.title}</h2>
 
                 <p className="history-player-meta">

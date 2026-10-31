@@ -36,6 +36,8 @@
   letter-spacing: 0.08em;
   overflow: hidden;
   white-space: nowrap;
+  background-position: center;
+  background-size: cover;
 }
 .mini-player-track strong {
   display: block;
@@ -100,5 +102,118 @@
   }
   .mini-player-track span {
     display: none;
+  }
+}
+
+.mini-player {
+  left: 224px;
+  z-index: 40;
+  height: 76px;
+  padding: 0 24px;
+  border-top-color: rgba(255, 255, 255, 0.075);
+  background: rgba(13, 15, 21, 0.96);
+  backdrop-filter: blur(18px);
+}
+
+.mini-player-track {
+  gap: 11px;
+  min-width: 190px;
+}
+
+.mini-player-icon {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  background:
+    radial-gradient(ellipse at 70% 20%, rgba(196, 181, 253, 0.36), transparent 40%),
+    linear-gradient(145deg, #392650, #7042ae 60%, #1e2940);
+  background-position: center;
+  background-size: cover;
+}
+
+.mini-player-track strong {
+  max-width: 220px;
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mini-player-track span {
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.mini-player-controls {
+  max-width: 430px;
+  gap: 4px;
+}
+
+.mini-player-buttons {
+  gap: 17px;
+}
+
+.mini-player-buttons button {
+  color: #a4a8b5;
+  font-size: 14px;
+}
+
+.mini-player-buttons button:hover {
+  color: #fff;
+}
+
+.mini-player-buttons .play-pause {
+  width: 31px;
+  height: 31px;
+  background: #f3efff;
+  font-size: 12px;
+}
+
+.mini-player-progress {
+  gap: 8px;
+  font-size: 10px;
+}
+
+@media (max-width: 900px) {
+  .mini-player {
+    left: 68px;
+  }
+}
+
+@media (max-width: 600px) {
+  .mini-player {
+    left: 58px;
+    height: 68px;
+    padding: 0 9px;
+    gap: 8px;
+  }
+
+  .mini-player-track {
+    min-width: 0;
+  }
+
+  .mini-player-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+
+  .mini-player-track strong {
+    max-width: 88px;
+    font-size: 10px;
+  }
+
+  .mini-player-controls {
+    min-width: 100px;
+  }
+
+  .mini-player-buttons {
+    gap: 9px;
+  }
+
+  .mini-player-progress {
+    gap: 4px;
+    font-size: 9px;
   }
 }

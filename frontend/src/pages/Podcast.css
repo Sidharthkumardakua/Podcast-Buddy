@@ -212,13 +212,16 @@
   align-items: center;
   justify-content: center;
   border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    #7c3aed,
-    #9b5cff
-  );
   color: #ffffff;
   font-size: 25px;
+  background-position: center;
+  background-size: cover;
+}
+
+.player-icon span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .player-info {

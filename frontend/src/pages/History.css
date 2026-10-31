@@ -150,6 +150,14 @@
   background: #7f45ed;
   color: white;
   font-size: 25px;
+  background-position: center;
+  background-size: cover;
+}
+
+.history-card-icon span {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .history-card-content {
@@ -241,6 +249,15 @@
 
 .history-player-meta {
   color: #9994a5;
+}
+
+.history-selected-art {
+  height: 150px;
+  margin: 18px 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background-position: center;
+  background-size: cover;
 }
 
 .history-audio {
