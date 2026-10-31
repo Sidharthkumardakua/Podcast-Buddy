@@ -1,0 +1,19 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Database files and backups
+*.db
+
+# Generated files
+instance/
+models/
+storage/audio/
+tts_env/

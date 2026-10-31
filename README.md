@@ -36,11 +36,14 @@ Edit `backend/.env` (the current directory is `backend`) and set your secrets an
 ```env
 SECRET_KEY=replace-with-a-long-random-value
 JWT_SECRET_KEY=replace-with-another-long-random-value
+DATABASE_URL=postgresql+psycopg://USER:PASSWORD@localhost:5432/podcast_buddy
 SERPAPI_KEY=your-serpapi-key
 BART_MODEL_PATH=models/news_bart
 ```
 
 Generate unique secret values for local development. Never commit `.env` or real credentials.
+
+PostgreSQL is required; the backend does not fall back to SQLite. Install and start PostgreSQL, create a database named `podcast_buddy`, and set `DATABASE_URL` to match your PostgreSQL credentials. The app creates missing tables at startup. Existing SQLite database files are not used by the app.
 
 The BART model directory must exist before starting the API because the summarizer loads during application startup. `BART_MODEL_PATH` is relative to `backend/` unless you provide an absolute path. The default in `.env.example` is `models/news_bart`; set it to the directory containing your model files. Model files are excluded from Git, so obtain or train a compatible model separately.
 
@@ -83,7 +86,8 @@ Create and install a compatible Coqui TTS environment at that path separately; i
 
 ## Notes
 
-- The default database is SQLite and is created locally; database files are ignored by Git.
+- PostgreSQL is the runtime database; local database files are ignored by Git.
+- The SQLite migration utility has been removed; back up any SQLite data you still need before deleting local database files.
 - The backend allows the local frontend origin `http://localhost:5173` via CORS.
-- Do not commit local virtual environments, `.env` files, model files, generated audio, databases, or build/dependency directories.
+- Do not commit local virtual environments, `.env` files, model files, generated audio, local database files, or build/dependency directories.
 - For deployment, configure secure secrets, allowed frontend origins, API URLs, model storage, and TTS separately.

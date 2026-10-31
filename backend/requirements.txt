@@ -40,3 +40,4 @@ pandas==3.0.5
 nltk==3.10.3
 regex==2026.9.10
 joblib==1.6.0
+psycopg[binary]>=3.2,<4

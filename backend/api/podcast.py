@@ -1,5 +1,4 @@
 import subprocess
-import sys
 import uuid
 import wave
 from pathlib import Path

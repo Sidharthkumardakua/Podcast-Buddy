@@ -3,7 +3,6 @@ from flask_jwt_extended import jwt_required
 
 from ai.preprocessing import combine_articles
 from ai.summarizer_singleton import summarizer
-from database.database import db
 from database.models import NewsArticle
 
 

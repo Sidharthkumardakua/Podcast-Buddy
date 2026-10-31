@@ -55,9 +55,8 @@ backend/storage/audio/*
 # =========================
 # Database files
 # =========================
+backend/instance/
 *.db
-*.sqlite
-*.sqlite3
 
 # =========================
 # Logs
